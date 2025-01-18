@@ -1,0 +1,117 @@
+# **File Watcher & Processor**
+
+## **Overview**
+
+Welcome to the **File Watcher & Processor** project! This Python-based tool watches a folder for new file uploads, logs the file names, processes them, updates the database, and moves them to a destination folder.
+
+It is a simple yet powerful solution that integrates **file monitoring**, **database management**, and **file processing** with PostgreSQL.
+
+---
+
+## **Features**
+
+- **Real-time Folder Monitoring**: Watches for new file uploads in the specified folder.
+- **Database Integration**: 
+  - Adds new files to the database.
+  - Updates the database if a file already exists.
+  - Marks files as "processed" after successful processing.
+- **File Movement**: Moves processed files to a separate destination folder.
+- **Customizable File Processing**: Easily extend the file processing logic.
+
+---
+
+## **Installation**
+
+### **Step 1: Clone the repository**
+```bash
+git clone https://github.com/saifiShaddil/pyfilewatcher.git
+cd file-watcher
+```
+
+### **Step 2: Set Up the Virtual Environment**
+
+**Create a virtual environment for the project:**
+
+*Window*
+```bash
+    python -m venv venv
+    venv\Scripts\activate
+```
+
+*macOS/Linux:*
+```bash
+    python -m venv venv
+    venv\Scripts\activate
+```
+
+
+### **Step 3: Install Dependencies**
+*Once the virtual environment is activated, install the required packages using:*
+
+```bash
+    pip install -r requirements.txt
+```
+
+**This will install watchdog for file monitoring and psycopg2 for PostgreSQL integration.**
+
+
+### **Step 4: Database Setup**
+*Ensure your PostgreSQL database is up and running. You need a table (filetable) with the following schema:*
+
+```sql
+CREATE TABLE filetable (
+    id SERIAL PRIMARY KEY,
+    file_name TEXT NOT NULL,
+    isuodated TEXT,
+    status TEXT DEFAULT 'pending',
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+```
+
+## Running the Watcher
+*Run the Python script with the following command:*
+```bash
+python watcher.py
+```
+
+## **File Structure**
+
+The project directory is organized as follows:
+
+```plaintext
+project/
+│
+├── venv/                  # Virtual environment files
+│   ├── Scripts/           # Windows script folder (Windows only)
+│   └── bin/               # Virtual environment executables (macOS/Linux only)
+├── requirements.txt       # Python dependencies for the project
+├── watcher.py             # Main Python script for file monitoring and processing
+├── README.md              # Project documentation (this file)
+└── LICENSE                # Project license file (if applicable)
+```
+
+### **Explanation of Key Files and Directories**
+
+- **`venv/`**:  
+  This directory contains the virtual environment for the project. It includes all the installed dependencies and executables needed to run the project in an isolated environment. This helps to avoid conflicts with other Python projects on your system.
+  - **`Scripts/`** (Windows only): Contains scripts to activate and manage the virtual environment on Windows.
+  - **`bin/`** (macOS/Linux only): Contains executables for the virtual environment on macOS or Linux systems.
+
+- **`requirements.txt`**:  
+  This file lists all the Python dependencies required to run the project. To install the dependencies, use the following command:
+  ```bash
+  pip install -r requirements.txt
+
+- **`watcher.py`**:
+The main Python script that powers the file watcher. It monitors the specified folder for new files, logs their names, processes them, updates the database, and moves them to the destination folder.
+
+- **`table.py`**:
+create the table in the database.
+
+
+### Highlights:
+- The explanations are formatted in a clean, readable style.
+- Each section explains the purpose of the file or directory in the project and includes relevant details like platform-specific folders for `venv`.
+
+
