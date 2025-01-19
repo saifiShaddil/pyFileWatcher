@@ -6,6 +6,7 @@ import psycopg2 # type: ignore
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from dotenv import load_dotenv # type: ignore
+import requests # type: ignore
 
 load_dotenv()
 
